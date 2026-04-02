@@ -1,0 +1,21 @@
+<div class="coffee-card">
+  <div class="card-emoji">{{ item().emoji }}</div>
+  <div class="card-body">
+    <h3 class="card-name">{{ item().name }}</h3>
+    <p class="card-desc">{{ item().description }}</p>
+    <p class="card-fact">{{ item().caffeineFact }}</p>
+  </div>
+  <div class="card-footer">
+    <span class="card-price">${{ item().price.toFixed(2) }}</span>
+    <button
+      class="btn-order"
+      [disabled]="loading()"
+      (click)="onOrder()">
+      @if (loading()) {
+        <span class="spinner"></span>
+      } @else {
+        Order Now
+      }
+    </button>
+  </div>
+</div>

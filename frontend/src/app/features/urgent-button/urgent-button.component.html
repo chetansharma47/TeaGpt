@@ -1,0 +1,36 @@
+<div class="urgent-section">
+  <button
+    class="urgent-btn"
+    [class.pulsing]="!loading()"
+    [disabled]="loading()"
+    (click)="onUrgentClick()">
+    @if (loading()) {
+      <span class="spinner"></span>
+      Earl is processing your audacity...
+    } @else {
+      ☕ URGENT COFFEE REQUEST ☕
+    }
+  </button>
+
+  <p class="urgent-hint">
+    For when you <em>really</em> need coffee. Earl will be even more offended.<br>
+    A Google Calendar meeting will be scheduled to resolve this diplomatically.
+  </p>
+
+  @if (earlMessage()) {
+    <div class="earl-urgent-response">
+      <p class="response-label">Earl's Response to Your Urgency:</p>
+      <blockquote class="response-text">{{ earlMessage() }}</blockquote>
+    </div>
+  }
+
+  @if (meetingLink()) {
+    <div class="meeting-scheduled">
+      <p class="meeting-label">✓ Meeting Scheduled</p>
+      <p class="meeting-note">Earl will attend as a teapot and contribute nothing.</p>
+      <a [href]="meetingLink()!" target="_blank" rel="noopener" class="meeting-link">
+        📅 Open Google Calendar Event →
+      </a>
+    </div>
+  }
+</div>

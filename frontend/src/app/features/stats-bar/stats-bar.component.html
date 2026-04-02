@@ -1,0 +1,16 @@
+<div class="stats-bar">
+  <span class="stat">
+    <span class="stat-label">Times Refused</span>
+    <span class="stat-value">{{ counter.count() }}</span>
+  </span>
+  <span class="stat-divider">|</span>
+  <span class="stat">
+    <span class="stat-label">Earl's Status</span>
+    <span class="stat-value">
+      @if (counter.count() < 5)   { 😒 Tolerating You }
+      @else if (counter.count() < 15) { 😤 Offended }
+      @else if (counter.count() < 30) { 😡 Outraged }
+      @else { 😔 Beyond Words }
+    </span>
+  </span>
+</div>

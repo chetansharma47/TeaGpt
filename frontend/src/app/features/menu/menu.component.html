@@ -1,0 +1,12 @@
+<section class="menu-section">
+  <h2 class="menu-title">Our Menu</h2>
+  <p class="menu-subtitle">Select your desired beverage. Earl will handle the rest.</p>
+  <div class="menu-grid">
+    @for (item of menuItems; track item.id) {
+      <app-coffee-card
+        [item]="item"
+        [loading]="loadingItemId() === item.id"
+        (orderPlaced)="onOrder($event)" />
+    }
+  </div>
+</section>
