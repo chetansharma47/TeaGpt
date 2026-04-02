@@ -1,0 +1,49 @@
+<div class="modal-backdrop" @fadeIn (click)="close.emit()">
+  <div class="modal-card" @slideUp (click)="$event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-badges">
+        <span class="badge badge-418">HTTP 418 — I'm a Teapot</span>
+        @if (styleLabel()) {
+          <span class="badge badge-style">{{ styleLabel() }}</span>
+        }
+      </div>
+      <button class="btn-close" (click)="close.emit()" aria-label="Close">✕</button>
+    </div>
+
+    <!-- Earl's refusal message -->
+    <div class="modal-body">
+      <div class="earl-quote-mark">"</div>
+      <blockquote class="refusal-message">
+        {{ refusal()?.message }}
+      </blockquote>
+      <div class="earl-signature">— Earl, The Teapot</div>
+    </div>
+
+    <!-- Mood indicator -->
+    @if (moodInfo()) {
+      <div class="mood-indicator">
+        <span class="mood-emoji">{{ moodInfo()!.emoji }}</span>
+        <span class="mood-label">Earl's current mood: {{ moodInfo()!.label }}</span>
+      </div>
+    }
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <div class="order-meta">
+        <span class="order-number">Refusal #{{ refusal()?.orderNumber }}</span>
+        <span class="total-count">{{ refusal()?.totalRefusals }} total refusals today</span>
+      </div>
+      <div class="footer-actions">
+        <button class="btn-schedule" (click)="scheduleClicked.emit()">
+          📅 Schedule Meeting to Discuss
+        </button>
+        <button class="btn-dismiss" (click)="close.emit()">
+          Accept Earl's Decision
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

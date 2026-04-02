@@ -1,0 +1,47 @@
+<div class="captcha-slider-section">
+  <h4 class="section-title">🔊 Brewing Sounds Volume</h4>
+
+  @if (!captchaSolved()) {
+    <div class="captcha-challenge">
+      <p class="captcha-intro">
+        Earl requires proof of intelligence before permitting volume adjustment.
+      </p>
+      <p class="math-question">
+        What is <strong>{{ a() }} × {{ b() }}</strong>?
+      </p>
+      <div class="captcha-input-row">
+        <input
+          type="number"
+          [(ngModel)]="userAnswer"
+          placeholder="Your answer"
+          class="captcha-input"
+          (keydown.enter)="checkCaptcha()" />
+        <button class="btn-prove" (click)="checkCaptcha()">Prove Yourself</button>
+      </div>
+      @if (captchaFailed()) {
+        <p class="captcha-error">{{ failMessage() }}</p>
+      }
+    </div>
+  } @else {
+    <div class="volume-control">
+      <p class="captcha-success">
+        ✓ Earl acknowledges your intelligence. Barely.
+      </p>
+      <div class="slider-row">
+        <span class="vol-label">🔇</span>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          [value]="volume()"
+          (input)="onVolumeChange($event)"
+          class="volume-slider" />
+        <span class="vol-label">🔊</span>
+        <span class="vol-value">{{ volume() }}%</span>
+      </div>
+      <p class="vol-note">
+        (This slider controls absolutely nothing. Earl makes tea sounds, not coffee sounds.)
+      </p>
+    </div>
+  }
+</div>
